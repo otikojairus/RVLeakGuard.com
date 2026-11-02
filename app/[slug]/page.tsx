@@ -100,7 +100,7 @@ export default async function ServicePage({ params }: Props) {
             <a className="btn-primary btn-lg" href={`tel:${SITE.phoneTel}`}>
               Call {SITE.phoneDisplay}
             </a>
-            <Link className="btn-secondary" href="/#quote">
+            <Link className="btn-secondary btn-on-dark" href="/#quote">
               Request callback
             </Link>
           </div>

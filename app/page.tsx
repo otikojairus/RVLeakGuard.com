@@ -41,7 +41,7 @@ export default function HomePage() {
               <a className="btn-primary" href={`tel:${SITE.phoneTel}`}>
                 Call {SITE.phoneDisplay}
               </a>
-              <a className="btn-secondary" href="#quote">
+              <a className="btn-secondary btn-on-dark" href="#quote">
                 Request a callback
               </a>
             </div>

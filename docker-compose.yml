@@ -1,3 +1,5 @@
+name: firetagpros
+
 services:
   web:
     build:

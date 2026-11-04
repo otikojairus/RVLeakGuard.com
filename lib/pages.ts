@@ -25,9 +25,7 @@ export const allPages = payload.pages;
 
 export const cityAreas = [
   ...new Set(
-    allPages
-      .map((p) => p.area)
-      .filter((a) => a && !a.includes("National")),
+    allPages.map((p) => p.area).filter((a) => a && !a.includes("National")),
   ),
 ].sort();
 
@@ -48,24 +46,30 @@ export function getRelatedPages(page: SeoPage, limit = 6): SeoPage[] {
 }
 
 export function mobilePageSlugForCity(city: string): string {
-  const slug = `fire-extinguisher-inspection-${citySlugSuffix(city)}`;
+  const slug = `rv-water-damage-repair-${citySlugSuffix(city)}`;
   if (allPages.some((p) => p.slug === slug)) return slug;
   const fallback = allPages.find((p) => p.area === city);
   return fallback?.slug ?? slug;
 }
 
-export function nationalServicePages() {
-  return nationalPages.filter((p) => !p.slug.startsWith("6-year") && !p.slug.startsWith("apartment"));
-}
-
 export const featuredNationalSlugs = [
-  "fire-extinguisher-inspection",
-  "commercial-fire-extinguisher-inspection",
-  "annual-fire-extinguisher-inspection",
-  "fire-extinguisher-maintenance",
-  "fire-extinguisher-servicing",
-  "fire-extinguisher-recharge-and-refill",
-  "co2-fire-extinguisher-refill",
-  "apartment-building-fire-extinguisher-inspection",
-  "6-year-fire-extinguisher-inspection",
+  "rv-water-damage-repair",
+  "rv-roof-leak-repair",
+  "rv-roof-water-damage-repair",
+  "rv-roof-resealing",
+  "rv-skylight-leak-repair",
+  "rv-window-leak-repair",
+  "rv-window-seal-replacement",
+  "rv-slide-out-seal-replacement",
+  "motorhome-floor-repair",
+  "rv-floor-rot-repair",
+  "rv-floor-water-damage-repair",
+  "rv-subfloor-replacement",
+  "rv-wall-water-damage-repair",
+  "rv-delamination-repair",
+  "rv-ceiling-water-damage-repair",
+  "rv-wood-rot-repair",
+  "rv-mold-removal",
+  "rv-plumbing-leak-repair",
+  "rv-water-heater-leak-repair",
 ] as const;

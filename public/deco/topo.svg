@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800" aria-hidden="true">
+  <g fill="none" stroke="currentColor" stroke-width="1" opacity="0.35">
+    <ellipse cx="400" cy="400" rx="120" ry="80"/>
+    <ellipse cx="400" cy="400" rx="180" ry="130"/>
+    <ellipse cx="400" cy="400" rx="240" ry="180"/>
+    <ellipse cx="400" cy="400" rx="300" ry="230"/>
+    <ellipse cx="400" cy="400" rx="360" ry="280"/>
+    <path d="M0 400 Q200 320 400 400 T800 400"/>
+    <path d="M0 480 Q220 400 400 480 T800 480"/>
+    <path d="M0 320 Q180 260 400 320 T800 320"/>
+  </g>
+</svg>

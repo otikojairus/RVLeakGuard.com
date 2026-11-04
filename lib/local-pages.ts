@@ -218,15 +218,25 @@ export const CITY_PROFILES: Record<string, CityProfile> = {
 };
 
 export const SERVICE_TITLES: Record<string, string> = {
-  "fire-extinguisher-inspection": "Fire extinguisher inspection",
-  "commercial-fire-extinguisher-inspection": "Commercial inspection",
-  "annual-fire-extinguisher-inspection": "Annual inspection",
-  "fire-extinguisher-maintenance": "Fire extinguisher maintenance",
-  "fire-extinguisher-servicing": "Fire extinguisher servicing",
-  "fire-extinguisher-recharge-and-refill": "Recharge & refill",
-  "co2-fire-extinguisher-refill": "CO₂ refill",
-  "apartment-building-fire-extinguisher-inspection": "Apartment building inspection",
-  "6-year-fire-extinguisher-inspection": "Six-year service",
+  "rv-water-damage-repair": "RV water damage repair",
+  "rv-roof-leak-repair": "RV roof leak repair",
+  "rv-roof-water-damage-repair": "Roof water damage repair",
+  "rv-roof-resealing": "RV roof resealing",
+  "rv-skylight-leak-repair": "Skylight leak repair",
+  "rv-window-leak-repair": "Window leak repair",
+  "rv-window-seal-replacement": "Window seal replacement",
+  "rv-slide-out-seal-replacement": "Slide-out seal replacement",
+  "motorhome-floor-repair": "Motorhome floor repair",
+  "rv-floor-rot-repair": "Floor rot repair",
+  "rv-floor-water-damage-repair": "Floor water damage repair",
+  "rv-subfloor-replacement": "Subfloor replacement",
+  "rv-wall-water-damage-repair": "Wall water damage repair",
+  "rv-delamination-repair": "Delamination repair",
+  "rv-ceiling-water-damage-repair": "Ceiling water damage repair",
+  "rv-wood-rot-repair": "Wood rot repair",
+  "rv-mold-removal": "Mould removal",
+  "rv-plumbing-leak-repair": "Plumbing leak repair",
+  "rv-water-heater-leak-repair": "Water heater leak repair",
 };
 
 export function getCityProfile(cityName: string): CityProfile {
@@ -237,13 +247,18 @@ export function getCityProfile(cityName: string): CityProfile {
       region: `${cityName} and nearby communities`,
       corridors: ["Major roads", "Downtown", "Industrial areas"],
       neighborhoods: ["Commercial districts", "Residential areas", "Mixed-use buildings"],
-      intro: `Building owners in ${cityName} call when extinguishers are out of date or missing — we help you get compliant without confusing jargon.`,
+      intro: `RV owners in ${cityName} call after storage, storms, or long trips when soft floors, stains, or musty smells show up — we help you fix the leak and the damage behind it.`,
     }
   );
 }
 
+function rvCityIntro(profile: CityProfile): string {
+  const corridor = profile.corridors[0] ?? "nearby highways";
+  return `Campers and motorhomes around ${profile.name} — including routes like ${corridor} — see roof and plumbing leaks from freeze-thaw and road vibration.`;
+}
+
 export function localPageTitle(cityName: string, serviceBase: string): string {
-  const service = SERVICE_TITLES[serviceBase] ?? "Fire extinguisher help";
+  const service = SERVICE_TITLES[serviceBase] ?? "RV water damage help";
   return `${service} in ${cityName}`;
 }
 
@@ -251,8 +266,8 @@ export function localHeroLead(
   profile: CityProfile,
   serviceBase: string,
 ): string {
-  const service = (SERVICE_TITLES[serviceBase] ?? "Fire extinguisher help").toLowerCase();
-  return `${profile.intro} Need ${service}? Call us — a real person will tell you what we can do in ${profile.name} and how soon someone can visit.`;
+  const service = (SERVICE_TITLES[serviceBase] ?? "RV water damage help").toLowerCase();
+  return `${rvCityIntro(profile)} Need ${service}? Call — a real person will tell you what we can do in ${profile.name} and how soon a technician can inspect your rig.`;
 }
 
 export function localSituations(cityName: string, serviceBase: string): string[] {
@@ -261,57 +276,107 @@ export function localSituations(cityName: string, serviceBase: string): string[]
   const place = profile.neighborhoods[0] ?? "your building";
 
   const byService: Record<string, string[]> = {
-    "fire-extinguisher-inspection": [
-      `Tags out of date in ${place} or the back hallway`,
-      `New lease or insurance form asking for proof of inspection`,
-      `Mixed ABC units — you want someone to confirm they match each room`,
+    "rv-water-damage-repair": [
+      `Water stain or soft spot after rain near ${place}`,
+      `Musty smell when you open up after winter storage`,
+      `Insurance photos needed before you head out on ${corridor}`,
     ],
-    "commercial-fire-extinguisher-inspection": [
-      `Retail or office space opening on ${corridor}`,
-      `Warehouse aisle extinguishers blocked or missing`,
-      `Franchise audit coming and cabinets look empty`,
+    "rv-roof-leak-repair": [
+      `Drip from ceiling lights after a storm`,
+      `Bubbling lap sealant or cracked roof membrane`,
+      `Leak only shows up when driving in rain on ${corridor}`,
     ],
-    "annual-fire-extinguisher-inspection": [
-      `Yearly sticker expired on several floors`,
-      `Strata letter reminding owners about common-area equipment`,
-      `You inherited a building and do not know when service last happened`,
+    "rv-roof-water-damage-repair": [
+      `Sagging ceiling panel or wet insulation smell`,
+      `Previous patch failed — water returned this season`,
+      `Roof vent area feels soft from the inside`,
     ],
-    "fire-extinguisher-maintenance": [
-      `Gauge in the red on a unit that still looks new`,
-      `Hose or handle damage after tenant use`,
-      `Older bottles you are unsure still meet code`,
+    "rv-roof-resealing": [
+      `Annual maintenance before hail or snow season`,
+      `New-to-you rig — you want a baseline seal inspection`,
+      `Dealer noted aging sealant at purchase`,
     ],
-    "fire-extinguisher-servicing": [
-      `Portfolio of locations — you want one team to rotate visits`,
-      `After-hours service so staff are not interrupted`,
-      `Swapping expired units before a busy season`,
+    "rv-skylight-leak-repair": [
+      `Condensation or drip around the skylight trim`,
+      `Cracked gasket or missing butyl at the frame`,
+      `Streaks on headliner radiating from the skylight`,
     ],
-    "fire-extinguisher-recharge-and-refill": [
-      `Someone discharged an ABC unit during a small fire`,
-      `Training drill emptied several cabinets`,
-      `Kitchen suppression used — you need the right replacement fast`,
+    "rv-window-leak-repair": [
+      `Water track on wall below a window after washing the rig`,
+      `Leak at slide-adjacent window in ${place}`,
+      `Frame caulk cracked from sun exposure`,
     ],
-    "co2-fire-extinguisher-refill": [
-      `Server room or lab CO₂ unit below weight`,
-      `Kitchen pass-through CO₂ used on a flare-up`,
-      `New equipment and you need the correct size on the wall`,
+    "rv-window-seal-replacement": [
+      `Fog between panes or drafty overnight stops`,
+      `Window weeps clogged — water pools in the track`,
+      `Seal visibly flattened or crumbling`,
     ],
-    "apartment-building-fire-extinguisher-inspection": [
-      `Parking level and laundry room cabinets need tagging`,
-      `Resident complaint about missing hallway units`,
-      `Board meeting next week — you want photos and a clear list`,
+    "rv-slide-out-seal-replacement": [
+      `Water on floor when slide is in after rain`,
+      `Wiper seal torn from road debris`,
+      `Wind whistle that started after last season`,
     ],
-    "6-year-fire-extinguisher-inspection": [
-      `Manufacturer label mentions a longer service interval`,
-      `Mixed-age fleet — you want a plan instead of guessing`,
-      `Facilities team asked what is due this quarter`,
+    "motorhome-floor-repair": [
+      `Soft spot near kitchen or entry in ${place}`,
+      `Floor flexes when you step near the slide`,
+      `Delamination sound when walking on laminate`,
+    ],
+    "rv-floor-rot-repair": [
+      `Dark wood visible after lifting a vent cover`,
+      `Smell of rot from a plumbing bay`,
+      `Floor screw no longer bites — spongy plywood`,
+    ],
+    "rv-floor-water-damage-repair": [
+      `Spill or tank overflow soaked the bathroom floor`,
+      `Dark line along wall base in the bedroom`,
+      `Moisture meter reading high near the fridge`,
+    ],
+    "rv-subfloor-replacement": [
+      `Large soft zone — patch would not be structural enough`,
+      `Previous owner hid damage with new vinyl`,
+      `Slide mechanism mounting area feels unstable`,
+    ],
+    "rv-wall-water-damage-repair": [
+      `Bubbling wallpaper or stained paneling in ${place}`,
+      `Wall feels cool and damp after rain`,
+      `Outlet area discoloured from a roof leak path`,
+    ],
+    "rv-delamination-repair": [
+      `Outer wall bubbles when pressed`,
+      `Ripples visible in fibreglass gel coat`,
+      `Leak fixed but wall still separates when hot`,
+    ],
+    "rv-ceiling-water-damage-repair": [
+      `Brown spot on headliner after storage`,
+      `Insulation clumps falling from roof vent area`,
+      `AC gasket leak stained the ceiling panel`,
+    ],
+    "rv-wood-rot-repair": [
+      `Framing soft around a window or vent`,
+      `Rot spread from an old plumbing leak`,
+      `Structural wood crumbled when you removed trim`,
+    ],
+    "rv-mold-removal": [
+      `Visible spots in closet after closing up wet`,
+      `Allergies flare only inside the camper`,
+      `Musty smell returns days after airing out`,
+    ],
+    "rv-plumbing-leak-repair": [
+      `Pump runs constantly — hidden line leak`,
+      `Wet bay under sink in ${place}`,
+      `Frozen line split last winter — now weeps when pressurized`,
+    ],
+    "rv-water-heater-leak-repair": [
+      `Puddle in exterior water-heater bay`,
+      `Rust streak from pressure relief weeping`,
+      `Hot water smell and wet carpet in adjacent storage`,
     ],
   };
 
   return (
     byService[serviceBase] ?? [
-      `Extinguishers overdue or missing in ${profile.name}`,
-      `Upcoming visit from fire or insurance in ${place}`,
+      `New leak or soft spot in ${profile.name}`,
+      `Damage discovered before a trip on ${corridor}`,
       `You want a straight answer on what to fix first`,
     ]
   );
@@ -319,22 +384,29 @@ export function localSituations(cityName: string, serviceBase: string): string[]
 
 export function localCallTips(serviceBase: string): string[] {
   const common = [
-    "Building address and best entrance for your technician",
-    "How many extinguishers and where they sit (floor, room type)",
-    "Whether any unit was used, tagged overdue, or showing a red gauge",
+    "Year, make, and model of RV or trailer",
+    "Where the rig is parked (storage, driveway, campground near you)",
+    "When you first noticed moisture, smell, or soft spots",
   ];
-  if (serviceBase.includes("apartment")) {
+  if (serviceBase.includes("roof") || serviceBase.includes("skylight")) {
     return [
       ...common,
-      "Number of floors and common areas to include",
-      "Property manager or board contact for access",
+      "Roof type if you know it (rubber, fibreglass, aluminum)",
+      "Whether leak appears only in driving rain or also when parked",
     ];
   }
-  if (serviceBase.includes("commercial") || serviceBase.includes("co2")) {
+  if (serviceBase.includes("plumbing") || serviceBase.includes("water-heater")) {
     return [
       ...common,
-      "Business hours and any hazard areas (kitchen, server room, warehouse)",
-      "Whether you need after-hours or weekend access",
+      "City water vs. tank — which was connected when it leaked",
+      "Photos of the wet bay or under-sink area if you have them",
+    ];
+  }
+  if (serviceBase.includes("mold")) {
+    return [
+      ...common,
+      "How long the unit was closed up and whether a dehumidifier ran",
+      "Anyone with allergies or asthma who uses the camper",
     ];
   }
   return common;

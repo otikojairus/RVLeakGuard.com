@@ -6,11 +6,29 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="footer-grid">
         <div>
-          <div className="footer-brand">{SITE.name}</div>
-          <p>
-            {SITE.tagline}. Inspection, maintenance, recharge, and refill when
-            your building needs to stay ready and documented.
+          <p className="footer-brand">{SITE.name}</p>
+          <p>{SITE.tagline}</p>
+          <p className="footer-blurb">
+            Roof drips, soft floors, and hidden mould — traced, dried, and rebuilt for
+            motorhomes and travel trailers nationwide.
           </p>
+        </div>
+        <div>
+          <h4>Services</h4>
+          <ul>
+            <li>
+              <Link href="/rv-water-damage-repair">Water damage repair</Link>
+            </li>
+            <li>
+              <Link href="/rv-roof-leak-repair">Roof leak repair</Link>
+            </li>
+            <li>
+              <Link href="/rv-floor-rot-repair">Floor rot repair</Link>
+            </li>
+            <li>
+              <Link href="/rv-mold-removal">Mould removal</Link>
+            </li>
+          </ul>
         </div>
         <div>
           <h4>Contact</h4>
@@ -18,28 +36,9 @@ export function SiteFooter() {
             <li>
               <a href={`tel:${SITE.phoneTel}`}>{SITE.phoneDisplay}</a>
             </li>
-            <li>
-              <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
-            </li>
             <li>{SITE.hours}</li>
-          </ul>
-        </div>
-        <div>
-          <h4>Popular services</h4>
-          <ul>
             <li>
-              <Link href="/fire-extinguisher-inspection">Fire extinguisher inspection</Link>
-            </li>
-            <li>
-              <Link href="/commercial-fire-extinguisher-inspection">
-                Commercial inspection
-              </Link>
-            </li>
-            <li>
-              <Link href="/annual-fire-extinguisher-inspection">Annual inspection</Link>
-            </li>
-            <li>
-              <Link href="/fire-extinguisher-recharge-and-refill">Recharge &amp; refill</Link>
+              <Link href="/#coverage">City coverage</Link>
             </li>
           </ul>
         </div>

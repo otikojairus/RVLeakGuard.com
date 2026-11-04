@@ -1,44 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Fire Tag Pros">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="RV Leak Guard">
   <defs>
-    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#1a4d36"/>
-      <stop offset="100%" stop-color="#0f2e1f"/>
-    </linearGradient>
-    <linearGradient id="helmet" x1="30%" y1="0%" x2="70%" y2="100%">
-      <stop offset="0%" stop-color="#f5d547"/>
-      <stop offset="55%" stop-color="#e8b923"/>
-      <stop offset="100%" stop-color="#c9971a"/>
-    </linearGradient>
-    <linearGradient id="crest" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#d42b1e"/>
-      <stop offset="100%" stop-color="#8f1c14"/>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#4cd97a"/>
+      <stop offset="100%" stop-color="#36b864"/>
     </linearGradient>
   </defs>
-  <!-- Badge -->
-  <rect width="64" height="64" rx="14" fill="url(#bg)"/>
-  <!-- Helmet brim & dome (firefighter helmet silhouette) -->
-  <path
-    fill="url(#helmet)"
-    d="M10 38c0-14 9-24 22-26 13 2 22 12 22 26v4H10v-4z"
-  />
-  <path
-    fill="#1a2e28"
-    opacity="0.35"
-    d="M10 42h44v3c0 2-2 4-4 4H14c-2 0-4-2-4-4v-3z"
-  />
-  <!-- Front crest / shield -->
-  <path
-    fill="url(#crest)"
-    d="M32 14c-6 0-10 4-10 9v6h20v-6c0-5-4-9-10-9z"
-  />
-  <path fill="#ffd8a8" d="M32 16.5c-4.2 0-7 2.6-7.5 6.5h15c-.5-3.9-3.3-6.5-7.5-6.5z"/>
-  <!-- Visor / SCBA mask ring -->
-  <ellipse cx="32" cy="34" rx="11" ry="9" fill="#122019" opacity="0.85"/>
-  <ellipse cx="32" cy="33" rx="8.5" ry="6.5" fill="#3d5a80" opacity="0.55"/>
-  <ellipse cx="32" cy="32.5" rx="6" ry="4.5" fill="#7eb8da" opacity="0.35"/>
-  <!-- Extinguisher hint (small, readable at favicon size) -->
-  <rect x="44" y="26" width="7" height="18" rx="2" fill="#b42318"/>
-  <rect x="45.5" y="22" width="4" height="5" rx="1" fill="#1a2e28"/>
-  <circle cx="47.5" cy="21" r="2" fill="#c45c26"/>
-  <rect x="46" y="30" width="3" height="8" rx="0.5" fill="#f4f1ea" opacity="0.9"/>
+  <rect width="64" height="64" rx="14" fill="#111d15"/>
+  <path fill="#f4f5f8" d="M14 40h28l4 6H10l4-6z"/>
+  <path fill="#eef0f4" d="M16 30h24v8H16z"/>
+  <rect x="38" y="31" width="7" height="5" rx="1" fill="#bae6fd" opacity="0.9"/>
+  <circle cx="20" cy="46" r="3.5" fill="#111d15"/>
+  <circle cx="38" cy="46" r="3.5" fill="#111d15"/>
+  <path fill="url(#g)" d="M32 11c-5 7-8 11-8 15a8 8 0 1 0 16 0c0-4-3-8-8-15z"/>
+  <path fill="none" stroke="#111d15" stroke-width="2" stroke-linecap="round" d="M28 23l3 3 6-7"/>
 </svg>

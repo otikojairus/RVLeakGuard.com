@@ -12,11 +12,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(`https://${SITE.domain}`),
   title: {
-    default: `${SITE.name} | Fire Extinguisher Inspection & Service`,
+    default: `${SITE.name} | RV Water Damage Repair & Leak Help`,
     template: `%s | ${SITE.name}`,
   },
   description:
-    "Fire extinguisher inspection, maintenance, recharge, and refill across Canada. Call to book a visit.",
+    "RV and camper water damage repair — roof leaks, soft floors, mould, and plumbing. Call to book help across Canada.",
   openGraph: {
     siteName: SITE.name,
     locale: "en_CA",
@@ -34,8 +34,8 @@ const localBusinessJsonLd = {
   name: SITE.name,
   url: `https://${SITE.domain}`,
   telephone: SITE.phoneTel,
-  email: SITE.email,
   areaServed: "CA",
+  openingHours: "Mo-Su 00:00-23:59",
   description: SITE.tagline,
 };
 

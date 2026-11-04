@@ -1,4 +1,3 @@
-
 export function slugBase(slug: string, citySuffixes: string[]): string {
   for (const suf of [...citySuffixes].sort((a, b) => b.length - a.length)) {
     const token = `-${suf}`;
@@ -19,15 +18,19 @@ export function displayServiceLabel(page: {
 }): string {
   const base = page.slug;
   if (page.area.includes("National")) {
-    if (base.includes("commercial")) return "Commercial buildings";
-    if (base.includes("annual")) return "Annual checks";
-    if (base.includes("maintenance")) return "Maintenance";
-    if (base.includes("servicing")) return "Routine servicing";
-    if (base.includes("recharge") || base.includes("refill")) return "Recharge & refill";
-    if (base.includes("co2")) return "CO₂ extinguishers";
-    if (base.includes("apartment")) return "Apartments & condos";
-    if (base.includes("6-year")) return "Long-interval service";
-    return "Fire extinguisher inspection";
+    if (base.includes("roof-leak") || base.includes("skylight") || base.includes("window-leak"))
+      return "Roof & exterior leaks";
+    if (base.includes("resealing") || base.includes("seal"))
+      return "Seals & weatherproofing";
+    if (base.includes("floor") || base.includes("subfloor") || base.includes("motorhome-floor"))
+      return "Floor & subfloor";
+    if (base.includes("wall") || base.includes("delamination") || base.includes("ceiling"))
+      return "Walls & ceilings";
+    if (base.includes("wood-rot")) return "Wood rot";
+    if (base.includes("mold")) return "Mould remediation";
+    if (base.includes("plumbing") || base.includes("water-heater")) return "Plumbing leaks";
+    if (base.includes("water-damage-repair")) return "Water damage restoration";
+    return page.category || "RV water damage";
   }
   return `Help in ${areaLabel(page.area)}`;
 }

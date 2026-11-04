@@ -1,35 +1,62 @@
 #!/usr/bin/env python3
-"""Regenerate data/pages.json from the Canada Fire Extinguisher pSEO workbook."""
+"""Regenerate data/pages.json from the Canada RV Water Damage pSEO workbook."""
 
 from __future__ import annotations
 
 import json
 import re
+import zipfile
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
-import openpyxl
-
 ROOT = Path(__file__).resolve().parents[1]
-XLSX = Path("/Users/jairusotiko/Downloads/pSEO - Canada Fire Extinguisher Services.xlsx")
+XLSX = Path("/Users/jairusotiko/Downloads/pSEO - Canada Water Damage for RV.xlsx")
 OUT = ROOT / "data" / "pages.json"
 
 SECTION_MAP = {
-    "GENERAL AND COMMERCIAL": "Inspection & compliance",
-    "ANNUAL FIRE": "Annual service",
-    "FIRE EXTINGUISHER MAINTENANCE": "Maintenance & servicing",
-    "FIRE EXTINGUISHER RECHARGE": "Recharge & refill",
-    "RESEARCH TOPICS": "Specialty building services",
+    "RV WATER DAMAGE REPAIR": "Water damage repair",
+    "RV ROOF DAMAGE": "Roof & leak repair",
+    "RV SEAL REPLACEMENT": "Seals & weatherproofing",
+    "RV FLOOR, WALL": "Structure & wood repair",
+    "RV MOLD REMOVAL": "Mold & plumbing leaks",
 }
 
 
+def _read_sheet_rows(path: Path) -> list[list]:
+    ns = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
+    with zipfile.ZipFile(path) as z:
+        shared = ET.fromstring(z.read("xl/sharedStrings.xml"))
+        strings: list[str] = []
+        for si in shared.findall(".//m:si", ns):
+            parts = []
+            for t in si.findall(".//m:t", ns):
+                if t.text:
+                    parts.append(t.text)
+            strings.append("".join(parts))
+        sheet = ET.fromstring(z.read("xl/worksheets/sheet1.xml"))
+        rows: list[list] = []
+        for row in sheet.findall(".//m:sheetData/m:row", ns):
+            cells: list = []
+            for c in row.findall("m:c", ns):
+                t = c.get("t")
+                v = c.find("m:v", ns)
+                if v is None or v.text is None:
+                    cells.append(None)
+                elif t == "s":
+                    cells.append(strings[int(v.text)])
+                else:
+                    cells.append(v.text)
+            rows.append(cells)
+    return rows
+
+
 def parse() -> tuple[list[dict], set[str]]:
-    wb = openpyxl.load_workbook(XLSX, read_only=True, data_only=True)
-    ws = wb["pSEO Page Plan"]
+    rows = _read_sheet_rows(XLSX)
     pages: list[dict] = []
     cities: set[str] = set()
-    current = "Fire extinguisher services"
+    current = "RV water damage repair"
 
-    for row in ws.iter_rows(min_row=2, values_only=True):
+    for row in rows[2:]:
         cells = list(row) + [None] * 13
         c0 = cells[0]
         if isinstance(c0, str) and cells[1] is None and cells[2] is None:
@@ -38,8 +65,8 @@ def parse() -> tuple[list[dict], set[str]]:
                 if key in u:
                     current = val
                     break
-            if "CITY AND AREA" in u:
-                current = "Local fire extinguisher help"
+            if "CITY / AREA" in u or "CITY AND AREA" in u:
+                current = "Local RV water damage help"
             continue
 
         num, title, slug, pk, sk, area, *_rest = cells[:13]
@@ -50,7 +77,7 @@ def parse() -> tuple[list[dict], set[str]]:
         area_str = area or "Canada (National)"
         if "National" not in str(area_str):
             cities.add(str(area_str))
-            cat = "Local fire extinguisher help"
+            cat = "Local RV water damage help"
         else:
             cat = current
 
@@ -73,7 +100,6 @@ def parse() -> tuple[list[dict], set[str]]:
             }
         )
 
-    wb.close()
     return pages, cities
 
 

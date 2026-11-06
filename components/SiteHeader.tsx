@@ -90,9 +90,7 @@ export function SiteHeader({ active = "" }: { active?: NavActive }) {
               onClick={() => setServicesOpen((o) => !o)}
             >
               Services
-              <span className="nav-chevron" aria-hidden>
-                ▾
-              </span>
+              <span className="nav-chevron" aria-hidden />
             </button>
             <div
               id={servicesPanelId}

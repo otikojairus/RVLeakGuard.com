@@ -94,22 +94,29 @@ export default function HomePage() {
       <SiteHeader />
       <section className="hero">
         <div className="hero-bg" aria-hidden />
-        <div className="hero-inner hero-inner-single">
+        <div className="hero-inner">
           <div className="hero-copy">
             <span className="hero-badge">You noticed something wrong — that’s the right time to call</span>
             <h1>RV water damage repair across Canada</h1>
             <p className="hero-tagline">Stop the leak before your trip is ruined</p>
             <p className="hero-desc">
-              Ceiling stain, musty closet, spongy floor — whatever you are seeing in your camper,{" "}
-              {SITE.name} helps you figure out what is actually wet, dry it properly, and fix it so
-              you can hit the road with confidence. We trace roof laps, window seals, slide-outs,
-              and plumbing bays, then rebuild with lightweight materials matched to how your rig was
-              built. From Pacific rain to prairie hail and eastern freeze–thaw, water travels where
-              you cannot see it until odour or soft spots appear. Call {SITE.phoneDisplay} to
-              describe your RV year, make, and symptoms — a real person will explain the next step
-              and quote scope before major tear-out, whether you are in a driveway, storage lot, or
-              campground.
+              Ceiling stain, musty closet, spongy floor — {SITE.name} traces what’s actually wet,
+              dries it properly, and rebuilds with materials matched to your rig. A real person
+              quotes the next step before major tear-out, whether you are in a driveway, storage
+              lot, or campground.
             </p>
+            <ul className="hero-trust">
+              <li>No guesswork on scope or price</li>
+              <li>Technicians who know RV construction</li>
+              <li>Help in storage lots, driveways &amp; campgrounds</li>
+            </ul>
+          </div>
+          <div className="hero-aside">
+            <div
+              className="hero-photo"
+              role="img"
+              aria-label="Technician inspecting water damage inside an RV"
+            />
             <div className="hero-btns">
               <a className="btn-primary btn-lg" href={`tel:${SITE.phoneTel}`}>
                 Call {SITE.phoneDisplay}
@@ -118,11 +125,6 @@ export default function HomePage() {
                 See how we can help
               </Link>
             </div>
-            <ul className="hero-trust">
-              <li>No guesswork on scope or price</li>
-              <li>Technicians who know RV construction</li>
-              <li>Help in storage lots, driveways &amp; campgrounds</li>
-            </ul>
           </div>
         </div>
       </section>
@@ -155,20 +157,18 @@ export default function HomePage() {
             <div
               className="welcome-img welcome-img-main"
               style={{
-                backgroundImage:
-                  "url(https://images.unsplash.com/photo-1527786356704-1064e7950a70?auto=format&fit=crop&w=900&q=80)",
+                backgroundImage: "url(/images/hero-primary.jpg)",
               }}
               role="img"
-              aria-label="Family with camper"
+              aria-label="Technician tracing water damage inside an RV"
             />
             <div
               className="welcome-img welcome-img-inset"
               style={{
-                backgroundImage:
-                  "url(https://images.unsplash.com/photo-1478131143088-881a8045d93a?auto=format&fit=crop&w=600&q=80)",
+                backgroundImage: "url(/images/hero-secondary.jpg)",
               }}
               role="img"
-              aria-label="Inspecting RV roof"
+              aria-label="Technician repairing an RV roof leak"
             />
           </div>
           <div className="welcome-copy">
@@ -200,9 +200,9 @@ export default function HomePage() {
       <section className="section tips" id="tips">
         <div className="container">
           <div className="tips-head">
-            <h2>Stay ahead of leaks &amp; rot</h2>
-            <div className="tips-head-aside">
+            <div className="tips-head-banner">
               <p className="services-label">Tips for owners</p>
+              <h2>Stay ahead of leaks &amp; rot</h2>
               <p>
                 Short reads on what to watch for between trips — so a small drip doesn’t become a
                 gutted floor.
@@ -227,10 +227,7 @@ export default function HomePage() {
                   <Link href={`/${tip.slug}`}>{tip.title}</Link>
                 </h3>
                 <p className="tip-excerpt">{tip.excerpt}</p>
-                <Link
-                  className={tip.featured ? "btn-primary tip-read" : "tip-read-link"}
-                  href={`/${tip.slug}`}
-                >
+                <Link className="btn-primary tip-read" href={`/${tip.slug}`}>
                   Read more
                 </Link>
               </article>
